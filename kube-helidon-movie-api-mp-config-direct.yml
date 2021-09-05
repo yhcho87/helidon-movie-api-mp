@@ -1,0 +1,68 @@
+#
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: helidon-movie-api-mp
+  namespace: movie
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helidon-movie-api-mp
+  template:
+    metadata:
+      labels:
+        app: helidon-movie-api-mp
+    spec:
+      containers:
+      - name: helidon-movie-api-mp
+        image: icn.ocir.io/cnmhpjbp8mpl/movie/helidon-movie-api-mp
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - name: helidon-movie-api-persistent-storage
+          mountPath: /var/lib/volume1
+      volumes:
+      - name: helidon-movie-api-persistent-storage
+        persistentVolumeClaim:
+          claimName: myclaim
+      imagePullSecrets:
+        - name: ocirsecret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: helidon-movie-api-mp
+  namespace: movie
+  labels:
+    app: helidon-movie-api-mp
+  annotations:
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
+spec:
+  ports:
+  - port: 30000
+    targetPort: 8080
+    name: http
+  selector:
+    app: helidon-movie-api-mp
+  type: LoadBalancer
+---
