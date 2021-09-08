@@ -35,12 +35,12 @@
         <checkstyle.config.location>etc/checkstyle.xml</checkstyle.config.location>
     </properties>
 
-    <repositories>
+    <!-- <repositories>
         <repository>
             <id>datanucleus</id>
             <url>http://www.datanucleus.org/downloads/maven2/</url>
         </repository>
-    </repositories>
+    </repositories> -->
     
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -193,10 +193,16 @@
             <groupId>io.helidon.integrations.cdi</groupId>
             <artifactId>helidon-integrations-cdi-datasource-hikaricp</artifactId>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.3</version>
-        </dependency>
+        </dependency> -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8-production</artifactId>
+            <version>21.1.0.0</version>
+            <type>pom</type>
+          </dependency>
     </dependencies>
 </project>
