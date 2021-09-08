@@ -65,8 +65,10 @@ jobs:
       - name: 'Update Environment Variables'
         shell: bash
         run: |
-          echo "$HOME/runner/bin" >> $GITHUB_PATH
+          ecgi "$HOME"
+          echo "/home/runner/bin" >> $GITHUB_PATH
           exec -l $SHELL
+          echo "$PATH"
       - name: 'Fix Config File Permissions'
         run: |
           oci setup repair-file-permissions --file /home/runner/.oci/config
