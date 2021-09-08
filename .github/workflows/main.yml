@@ -62,10 +62,10 @@ jobs:
           curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
           chmod +x install.sh
           ./install.sh --accept-all-defaults
-      - name: 'Add oci path to Github path'
+      - name: 'Update Environment Variables'
         shell: bash
         run: |
-          echo "home/runner/bin" >> $GITHUB_PATH
+          echo "$HOME/runner/bin" >> $GITHUB_PATH
           exec -l $SHELL
       - name: 'Fix Config File Permissions'
         run: |
