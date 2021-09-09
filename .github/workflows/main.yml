@@ -76,5 +76,9 @@ jobs:
           mkdir -p ~/.kube
           oci ce cluster create-kubeconfig --cluster-id ${{ secrets.OKE_OCID }} --file ~/.kube/config --region ${{secrets.OCI_REGION}} --token-version 2.0.0 --kube-endpoint ${{secrets.OKE_ENDPOINT}} 
           export KUBECONFIG=~/.kube/config
+      - name: 'Deploy the API on OKE'
+        run: |
+          kubectl create ns movie; echo create namespace
+          kubectl create secret docker-registry ocirsecret --docker-server=${{ secrets.DOCKER_REGISTRY }} --docker-username='${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_USERNAME }}' --docker-password='${{ secrets.DOCKER_PASSWORD }}' --namespace=movie
           
           
