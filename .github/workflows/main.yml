@@ -79,6 +79,6 @@ jobs:
       - name: 'Deploy the API on OKE'
         run: |
           kubectl create ns movie; echo create namespace
-          kubectl create secret docker-registry ocirsecret --docker-server=${{ secrets.DOCKER_REGISTRY }} --docker-username='${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_USERNAME }}' --docker-password='${{ secrets.DOCKER_PASSWORD }}' --namespace=movie
+          kubectl create secret docker-registry ocirsecret --docker-server=icn.ocir.io --docker-username='apackrsct01/${{ secrets.DOCKER_USERNAME }}' --docker-password='${{ secrets.DOCKER_PASSWORD }}' --namespace=movie
           
           
