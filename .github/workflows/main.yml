@@ -79,7 +79,7 @@ jobs:
       - name: 'Deploy the API on OKE'
         run: |
           kubectl create namespace movie --dry-run=client -o json | kubectl apply -f -
-          kubectl create secret --dry-run=client -o json docker-registry ocirsecret --docker-server=icn.ocir.io --docker-username='apackrsct01/${{ secrets.DOCKER_USERNAME }}' --docker-password='${{ secrets.DOCKER_PASSWORD }}' --namespace=movie | kubectl apply -f -
+          kubectl create secret --dry-run=client -o json docker-registry ocirsecret --docker-server=icn.ocir.io --docker-username='apackrsct01/oracleidentitycloudservice/${{ secrets.DOCKER_USERNAME }}' --docker-password='${{ secrets.DOCKER_PASSWORD }}' --namespace=movie | kubectl apply -f -
           kubectl apply -f csi-bvs-pvc.yaml
           kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml
           
