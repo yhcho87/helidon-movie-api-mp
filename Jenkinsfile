@@ -14,15 +14,17 @@ pipeline {
 	    	sh 'mvn clean'	 
             }
         }
-        stage('Build Image and push') { 
-               steps {		
-                        sh """
-                        docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}
-                        docker build -t ${imageTag} .
-                        docker push ${imageTag} 
-                        """
-		}
-	}	
+        /*
+        *stage('Build Image and push') { 
+        *       steps {		
+        *                sh """
+        *                docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}
+        *                docker build -t ${imageTag} .
+        *                docker push ${imageTag} 
+        *                """
+	*	}
+	*}	
+        */
         stage('Deploy To Kubernetes'){
           steps{
             script {
