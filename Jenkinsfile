@@ -5,9 +5,7 @@ def ocir='icn.ocir.io'
 def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:latest"
 
 pipeline {
-    /*
-    *agent { label 'jenkinsslave' }
-    */ 
+    agent { label 'jenkinsslave' }
     stages {
         
         stage('Build') { 
