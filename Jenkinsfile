@@ -2,7 +2,7 @@ def repository = 'movie'
 def appName = 'helidon-movie-api-mp'
 def tenancy='apackrsct01'
 def ocir='icn.ocir.io'
-def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:${scmVars.GIT_COMMIT}"
 
 pipeline {
     agent { label 'jenkinsslave' }
@@ -17,7 +17,9 @@ pipeline {
         stage('Build Image and push') { 
                steps {		
                         sh """
-			docker build -t ${imageTag} .
+                        docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}"
+                        docker build -t ${imageTag} .
+                        docuer push ${imageTag} 
                         """
 		}
 	}	
