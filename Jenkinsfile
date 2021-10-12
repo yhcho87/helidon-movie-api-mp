@@ -2,7 +2,7 @@ def repository = 'movie'
 def appName = 'helidon-movie-api-mp'
 def tenancy='apackrsct01'
 def ocir='icn.ocir.io'
-def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:${scmVars.GIT_COMMIT}"
+def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:latest"
 
 pipeline {
     agent { label 'jenkinsslave' }
