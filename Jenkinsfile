@@ -1,3 +1,9 @@
+def repository = 'movie'
+def appName = 'helidon-movie-api-mp'
+def tenancy='apackrsct01'
+def ocir='icn.ocir.io'
+def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+
 pipeline {
     agent { label 'jenkinsslave' }
     
@@ -5,43 +11,24 @@ pipeline {
         
         stage('Build') { 
             steps {
-                sh "mvn install -DskipTests" 
+                container('maven') {		
+		sh 'maven clean build'	 
             }
         }
-        stage('Create docker image') { 
-            steps {
-                script {
-                    def scmVars = checkout([
-                        $class: 'GitSCM',
-                        doGenerateSubmoduleConfigurations: false,
-                        userRemoteConfigs: [[
-                            url: 'https://github.com/MangDan/helidon-movie-api-mp'
-                          ]],
-                        branches: [ [name: '*/main'] ]
-                      ])
-                sh "sudo docker build -f Dockerfile -t ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT} ."
-                }
-            }
+        stage('Build Image and push') { 
+               steps {		
+				container('docker') {		
+		    		withDockerRegistry(credentialsId: 'ocir-credentials', url: "https://${ocir}") {
+					      sh """				           
+				            docker build -t ${imageTag} .
+				            docker push ${imageTag}
+				            """
+					}	
+	    		}	
+				
+		}	
         }
-        stage('Push image to OCIR') { 
-            steps {
-                script {
-                    def scmVars = checkout([
-                        $class: 'GitSCM',
-                        doGenerateSubmoduleConfigurations: false,
-                        userRemoteConfigs: [[
-                            url: 'https://github.com/MangDan/helidon-movie-api-mp'
-                          ]],
-                        branches: [ [name: '*/main'] ]
-                      ])
-                sh "sudo docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}"
-                sh "sudo docker tag ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT} ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}"
-                sh "sudo docker push ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}" 
-                env.GIT_COMMIT = scmVars.GIT_COMMIT
-                sh "export GIT_COMMIT=${env.GIT_COMMIT}"
-                }
-               }
-            }
         }
+}
 }
 
