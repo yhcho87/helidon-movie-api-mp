@@ -25,10 +25,10 @@ pipeline {
 	*	}
 	*}	
         */
+        stage
         stage('Deploy To Kubernetes'){
           steps{
             script {
-              kubernetesDeploy(configs: "csi-bvs-pvc.yaml", kubeconfigId: "kubeconfig-oke")
               kubernetesDeploy(configs: "kube-helidon-movie-api-mp-config-direct.yml", kubeconfigId: "kubeconfig-oke")
             }
           }
