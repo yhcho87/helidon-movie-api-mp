@@ -34,6 +34,7 @@ pipeline {
         *      kubernetesDeploy(configs: "kube-helidon-movie-api-mp-config-direct.yml", kubeconfigId: "kubeconfig-oke")
         *    }
         *  }
+        */
         steps{
           sh 'kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml'
         }
