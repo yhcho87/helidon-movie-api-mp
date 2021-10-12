@@ -7,14 +7,15 @@ def imageTag = "${ocir}/${tenancy}/${repository}/${appName}:latest"
 pipeline {
     agent any
     stages {
-        
-        stage('Build') { 
-            steps {
-               withMaven(maven: 'mvn') {
-	    	 sh 'mvn clean'	 
-               }
-            }
-        }
+        /* 
+        *stage('Build') { 
+        *    steps {
+        *       withMaven(maven: 'mvn') {
+	*    	 sh 'mvn clean'	 
+        *       }
+        *    }
+        *}
+        */
         /*
         *stage('Build Image and push') { 
         *       steps {		
