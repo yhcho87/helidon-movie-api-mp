@@ -16,15 +16,9 @@ pipeline {
         }
         stage('Build Image and push') { 
                steps {		
-		    		withDockerRegistry(credentialsId: 'ocir-credentials', url: "https://${ocir}") {
-					      sh """				           
-				            docker build -t ${imageTag} .
-				            docker push ${imageTag}
-				            """
-					}	
-				
-		}	
-        }
+			sh 'docker build -t ${imageTag} .'
+		}
+	}	
     }
 }
 
