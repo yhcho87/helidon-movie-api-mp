@@ -8,7 +8,6 @@ pipeline {
     /*
     *agent { label 'jenkinsslave' }
     */ 
-    agent { label 'master' }
     stages {
         
         stage('Build') { 
