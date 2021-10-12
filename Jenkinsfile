@@ -16,7 +16,9 @@ pipeline {
         }
         stage('Build Image and push') { 
                steps {		
-			sh 'docker build -t ${imageTag} .'
+                        sh """
+			docker build -t ${imageTag} .
+                        """
 		}
 	}	
     }
