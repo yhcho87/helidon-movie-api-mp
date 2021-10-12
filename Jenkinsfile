@@ -12,7 +12,8 @@ pipeline {
         stage('Build') { 
             steps {
                 container('maven') {		
-		sh 'maven clean build'	 
+		    sh 'maven clean build'	 
+                }
             }
         }
         stage('Build Image and push') { 
@@ -28,7 +29,6 @@ pipeline {
 				
 		}	
         }
-        }
-}
+    }
 }
 
