@@ -25,7 +25,6 @@ pipeline {
 	*	}
 	*}	
         */
-        stage
         stage('Deploy To Kubernetes'){
           steps{
             script {
