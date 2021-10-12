@@ -31,7 +31,7 @@ pipeline {
                                   kubectl create secret docker-registry ocirsecret --docker-username='apackrsct01/oracleidentitycloudservice/donghu.kim@oracle.com' --docker-password='Kyz3ux<K68O})_mAW[HH'  --docker-server=icn.ocir.io --docker-email='donghu.kim@oracle.com' -n movie 
 
                                 """
-	    		}	
-				
-			}			
-		}
+}
+}
+}
+}
