@@ -11,21 +11,17 @@ pipeline {
         
         stage('Build') { 
             steps {
-                container('maven') {		
-		    sh 'maven clean build'	 
-                }
+	    	sh 'maven clean build'	 
             }
         }
         stage('Build Image and push') { 
                steps {		
-				container('docker') {		
 		    		withDockerRegistry(credentialsId: 'ocir-credentials', url: "https://${ocir}") {
 					      sh """				           
 				            docker build -t ${imageTag} .
 				            docker push ${imageTag}
 				            """
 					}	
-	    		}	
 				
 		}	
         }
