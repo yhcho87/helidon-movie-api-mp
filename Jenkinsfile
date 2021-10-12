@@ -36,7 +36,7 @@ pipeline {
                       ])
                 sh "sudo docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}"
                 sh "sudo docker tag ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT} ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}"
-                sh "sudo docker push" ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}" 
+                sh "sudo docker push ${params.DOCKER_REGISTRY}/${params.DOCKER_REPO}:${scmVars.GIT_COMMIT}" 
                 env.GIT_COMMIT = scmVars.GIT_COMMIT
                 sh "export GIT_COMMIT=${env.GIT_COMMIT}"
                 }
