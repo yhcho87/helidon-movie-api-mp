@@ -16,21 +16,24 @@ pipeline {
         *    }
         *}
         */
-        /*
-        *stage('Build Image and push') { 
-        *       steps {		
-        *                sh """
-        *                docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}
-        *                docker build -t ${imageTag} .
-        *                docker push ${imageTag} 
-        *                """
-	*	}
-	*}	
-        */
+        stage('Build Image and push') { 
+               steps {		
+                   sh """
+                       docker login -u ${params.REGISTRY_USERNAME} -p '${params.REGISTRY_TOKEN}' ${params.DOCKER_REGISTRY}
+                       docker build -t ${imageTag} .
+                       docker push ${imageTag} 
+                   """
+		}
+	}
+        
         stage('Deploy To Kubernetes'){
           steps{
            script {
-              sh 'kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml'
+              sh """
+              kubectl create ns  ${params.NAMESPACE}
+              kubectl create secret docker-registry ocirsecret --docker-username='${params.REGISTRY_USERNAME}' --docker-password='${params.REGISTRY_TOKEN}'  --docker-server=${params.DOCKER_REGISTRY} --docker-email='donghu.kim@oracle.com' -n ${params.NAMESPACE}
+              kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml
+              """
             }
           }
         }
