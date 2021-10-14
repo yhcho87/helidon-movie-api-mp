@@ -27,6 +27,7 @@ pipeline {
         */ 
         stage('Deploy To Kubernetes'){
           steps{
+            script {
               sh """
               try {
                 kubectl create ns  ${params.NAMESPACE}
@@ -43,6 +44,7 @@ pipeline {
               kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml
               """
             }
+          }
         }
     }
 }
