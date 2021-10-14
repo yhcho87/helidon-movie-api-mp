@@ -27,10 +27,10 @@ pipeline {
         */ 
         stage('Deploy To Kubernetes'){
           steps{
-              catchError {
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh "kubectl create ns  ${params.NAMESPACE}"
               }
-              catchError {
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh "kubectl create secret docker-registry ocirsecret --docker-username='${params.REGISTRY_USERNAME}' --docker-password='${params.REGISTRY_TOKEN}'  --docker-server=${params.DOCKER_REGISTRY} --docker-email='donghu.kim@oracle.com' -n ${params.NAMESPACE}"
               }
 
