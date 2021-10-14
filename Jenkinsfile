@@ -27,21 +27,19 @@ pipeline {
         */ 
         stage('Deploy To Kubernetes'){
           steps{
-              sh """
               try {
-                kubectl create ns  ${params.NAMESPACE}
+                sh "kubectl create ns  ${params.NAMESPACE}"
               } catch (java.lang.Throwable err) {
                 echo "Failed: ${err}"
               } 
               
               try {
-                kubectl create secret docker-registry ocirsecret --docker-username='${params.REGISTRY_USERNAME}' --docker-password='${params.REGISTRY_TOKEN}'  --docker-server=${params.DOCKER_REGISTRY} --docker-email='donghu.kim@oracle.com' -n ${params.NAMESPACE}
+                sh "kubectl create secret docker-registry ocirsecret --docker-username='${params.REGISTRY_USERNAME}' --docker-password='${params.REGISTRY_TOKEN}'  --docker-server=${params.DOCKER_REGISTRY} --docker-email='donghu.kim@oracle.com' -n ${params.NAMESPACE}"
               } catch (java.lang.Throwable err) {
                 echo "Failed: ${err}"
               }
 
-              kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml
-              """
+              sh "kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml"
             }
         }
     }
