@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy To Kubernetes'){
           steps{
            script {
-              kubernetesDeploy(configs: "kube-helidon-movie-api-mp-config-direct.yml", kubeconfigId: "kube-config")
+              sh 'kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml'
             }
           }
         }
