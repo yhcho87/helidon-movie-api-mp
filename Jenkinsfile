@@ -16,14 +16,6 @@ pipeline {
         stage('Deploy To Kubernetes'){
           steps{
             withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'cluster-ctiuoakdfza', contextName: 'iscream-media', credentialsId: 'oke-credentials', namespace: 'kube-system', serverUrl: 'https://152.70.95.226:6443']]) {
-                sh 'kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml'
-            }
-          }
-        }
-
-        stage('Deploy To Kubernetes'){
-          steps{
-            withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'cluster-ctiuoakdfza', contextName: 'iscream-media', credentialsId: 'oke-credentials', namespace: 'kube-system', serverUrl: 'https://152.70.95.226:6443']]) {
                 
                 
               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
