@@ -13,7 +13,7 @@ pipeline {
 		}
 	}
         
-        stage('Deploy To Kubernetes'){
+        stage('Deploy To Kubernetes...'){
           steps{
             withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'cluster-ctiuoakdfza', contextName: 'iscream-media', credentialsId: 'oke-credentials', namespace: 'kube-system', serverUrl: 'https://152.70.95.226:6443']]) {
                 
