@@ -36,9 +36,9 @@ spec:
         - name: http
           containerPort: 8080
           protocol: TCP
-        volumeMounts:
-        - name: helidon-movie-api-persistent-storage
-          mountPath: /var/lib/volume1
+#        volumeMounts:
+#        - name: helidon-movie-api-persistent-storage
+#          mountPath: /var/lib/volume1
 #      volumes:
 #      - name: helidon-movie-api-persistent-storage
 #        persistentVolumeClaim:
