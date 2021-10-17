@@ -39,10 +39,10 @@ spec:
         volumeMounts:
         - name: helidon-movie-api-persistent-storage
           mountPath: /var/lib/volume1
-      volumes:
-      - name: helidon-movie-api-persistent-storage
-        persistentVolumeClaim:
-          claimName: myclaim
+#      volumes:
+#      - name: helidon-movie-api-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: myclaim
       imagePullSecrets:
         - name: ocirsecret
 ---
