@@ -15,7 +15,7 @@ pipeline {
         
         stage('Deploy To Kubernetes'){
           steps{
-            withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'cluster-ctiuoakdfza', contextName: 'iscream-media', credentialsId: 'oke-credential', namespace: 'kube-system', serverUrl: 'https://152.70.95.226:6443']]) {
+            withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'cluster-ctiuoakdfza', contextName: 'apacckrsct01-oke-cluster-1', credentialsId: 'oke-kubeconfig', namespace: 'kube-system', serverUrl: 'https://152.70.95.226:6443']]) {
                 
                 
               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
