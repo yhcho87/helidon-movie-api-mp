@@ -59,7 +59,7 @@ Auth Token: 우측 상단 "Profile > 사용자 계정 선택 > 좌측 메뉴에�
 ```
 $ kubectl create ns movie
 
-$ kubectl create secret docker-registry ocirsecret --docker-server=icn.ocir.io --docker-username=idxikmibcwcd/oracleidentitycloudservice/donghu.kim@oracle.com --docker-password='{Auth Token}' --docker-email=donghu.kim@oracle.com
+$ kubectl create secret docker-registry ocirsecret --docker-server=icn.ocir.io --docker-username=idxikmibcwcd/oracleidentitycloudservice/donghu.kim@oracle.com --docker-password='{Auth Token}' --docker-email=donghu.kim@oracle.com -n movie
 ```
 
 ### 10. Deploy
