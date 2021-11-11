@@ -46,7 +46,7 @@ jobs:
 #          uses: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           push: true
           tags: |
-            icn.ocir.io/apackrsct01/movie/helidon-movie-api-mp:latest
+            icn.ocir.io/idxikmibcwcd/movie/helidon-movie-api-mp:latest
       - name: 'Write Config & Key Files'
         run: |
           mkdir ~/.oci
