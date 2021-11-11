@@ -1,4 +1,4 @@
-# OKE HandsOn
+# OKE HandsO.....n
 
 ### 1. ocicli 설치 및 설정
 **설치**
