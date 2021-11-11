@@ -18,7 +18,7 @@
 2. "Create Cluster > Quick Create" 선택
 3. Cluster 이름 입력 (e.g. oke-cluster1)
 4. 앞서 생성한 Compartment 선택
-5. Shape: VM.Standard2.1 선택
+5. Shape: VM.Standard2.1 (Intel 1 OCPU / 15GB) 혹은 VM.Standard.E4.Flex (AMD EPIC 1 OCPU / 16GB) 선택
 6. Next 선택 후 생성
 
 ### 5. KUBECONFIG 생성
@@ -44,6 +44,11 @@ $ git clone https://github.com/MangDan/helidon-movie-api-mp
 
 ```
 $ docker build -t icn.ocir.io/idxikmibcwcd/movie/helidon-movie-api-mp:1.0 .
+
+$ docker login icn.ocir.io -u idxikmibcwcd/oracleidentitycloudservice/donghu.kim@oracle.com
+
+password : AFPLga[PL0-Kw]y9(Ri)
+
 $ docker push icn.ocir.io/idxikmibcwcd/movie/helidon-movie-api-mp:1.0
 ```
 
