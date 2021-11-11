@@ -1,10 +1,10 @@
 # OKE HandsOn
 
 ### ocicli 설치 및 설정
-설치
+**설치**
 > https://thekoguryo.github.io/oci/chapter14/1/1/1/
 
-설정
+**설정**
 > https://thekoguryo.github.io/oci/chapter14/1/1/3/
 
 ### kubectl 설치
@@ -47,5 +47,23 @@ $ docker build -t icn.ocir.io/idxikmibcwcd/movie/helidon-movie-api-mp:1.0 .
 $ docker push icn.ocir.io/idxikmibcwcd/movie/helidon-movie-api-mp:1.0
 ```
 
+### K8s namespace, secret 생성
+```
+$ kubectl create ns movie
+
+$ kubectl create secret docker-registry ocirsecret --docker-server=icn.ocir.io --docker-username=idxikmibcwcd/oracleidentitycloudservice/donghu.kim@oracle.com --docker-password='{Auth Token}' --docker-email=donghu.kim@oracle.com
+```
+
 ### Deploy
+```
+$ cd helidon-movie-api-mp
 $ kubectl apply -f kube-helidon-movie-api-mp-config-direct.yml
+```
+
+### Pod 확인 및 External IP 확인
+```
+$ kubectl get all -n movie
+```
+
+### 서비스 확인
+http://{external_ip}:8080/api/search/v1/movies
