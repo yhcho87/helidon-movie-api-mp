@@ -54,6 +54,7 @@ metadata:
   labels:
     app: helidon-movie-api-mp
   annotations:
+    service.beta.kubernetes.io/oci-load-balancer-internal: "true"
     service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
     service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
