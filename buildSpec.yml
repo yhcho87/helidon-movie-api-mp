@@ -12,7 +12,7 @@ shell: bash
 steps:
   - type: Command
     name: "Build Source 1"
-    timeoutInSeconds: 400
+    timeoutInSeconds: 1200
     command: |
       mvn clean install
 outputArtifacts:
