@@ -71,7 +71,7 @@ public class MovieController {
     @GET
     @Path("/movie-people")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response searchMoviePeople(@QueryParam("filmography") String filmography) {
+    public Response searchMoviePeople(@DefaultValue("") @QueryParam("filmography") String filmography) {
         return Response.ok(movieService.searchMoviePeople(filmography)).build();
     }
 
