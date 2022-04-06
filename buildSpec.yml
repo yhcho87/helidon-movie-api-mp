@@ -15,7 +15,13 @@ steps:
     timeoutInSeconds: 1300
     command: |
       mvn clean install
+  - type: Command
+    name: "make Jar"
+    timeoutInSeconds: 1300
+    command: |
+      cd ${OCI_WORKSPACE_DIR}/helidon-movie-api-mp/target
+      jar -cvf helidon-movie-api-mp-all.jar .
 outputArtifacts:
   - name: OUTPUT
     type: BINARY
-    location: ${OCI_WORKSPACE_DIR}/helidon-movie-api-mp/target/helidon-movie-api-mp.jar
+    location: ${OCI_WORKSPACE_DIR}/helidon-movie-api-mp/target/helidon-movie-api-mp-all.jar
