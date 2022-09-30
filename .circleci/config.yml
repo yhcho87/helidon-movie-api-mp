@@ -41,6 +41,8 @@ jobs:
             echo 'tenancy= "$OCI_TENANCY_OCID"' >> ~/.oci/config
             echo 'key_file=~/.oci/key.pem' >> ~/.oci/config
             echo '"$OCI_KEY_FILE"' >> ~/.oci/key.pem
+            cat ~/.oci/config
+            cat ~/.oci/key.pem
       # Install OCI CLI
       - run:
           name: Install OCI CLI
