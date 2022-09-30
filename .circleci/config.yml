@@ -34,14 +34,14 @@ jobs:
           name: Setup OCI Config
           command: |
             mkdir ~/.oci
-            echo "[DEFAULT]" >> ~/.oci/config
-            echo "user= $OCI_USER_OCID " >> ~/.oci/config
-            echo "fingerprint= $OCI_FINGERPRINT " >> ~/.oci/config
-            echo "region= $OCI_REGION " >> ~/.oci/config
-            echo "tenancy= $OCI_TENANCY_OCID " >> ~/.oci/config
-            echo "key_file=~/.oci/key.pem" >> ~/.oci/config
-            echo "$OCI_KEY_FILE" >> ~/.oci/key.pem
-      # Install OCI CLI 3.18
+            echo '[DEFAULT]' >> ~/.oci/config
+            echo 'user= "$OCI_USER_OCID"' >> ~/.oci/config
+            echo 'fingerprint= "$OCI_FINGERPRINT"' >> ~/.oci/config
+            echo 'region= "$OCI_REGION"' >> ~/.oci/config
+            echo 'tenancy= "$OCI_TENANCY_OCID"' >> ~/.oci/config
+            echo 'key_file=~/.oci/key.pem' >> ~/.oci/config
+            echo '"$OCI_KEY_FILE"' >> ~/.oci/key.pem
+      # Install OCI CLI
       - run:
           name: Install OCI CLI
           command: |
