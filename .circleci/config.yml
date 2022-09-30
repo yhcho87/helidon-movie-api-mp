@@ -33,10 +33,9 @@ jobs:
       - run:
           name: Install OCI CLI 3.18
           command: |
-            curl -sSL "https://github.com/oracle/oci-cli/releases/download/v3.18.0/oci-cli-3.18.0-Ubuntu-18.04-Offline.zip"
-            unzip -q -o oci-cli-3.18.0-Ubuntu-18.04-Offline.zip
-            $SUDO bash install.sh --offline-install
-            rm -r oci-cli-3.18.0-Ubuntu-18.04-Offline.zip
+            curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
+            chmod +x install.sh
+            ./install.sh --accept-all-defaults
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
