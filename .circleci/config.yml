@@ -36,6 +36,7 @@ jobs:
             set -o nounset
             set -o errexit
             set -o xtrace
+            set -x
             mkdir ~/.oci
             echo '[DEFAULT]' >> ~/.oci/config
             echo 'user='$OCI_USER_OCID >> ~/.oci/config
