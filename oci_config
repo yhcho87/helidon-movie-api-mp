@@ -1,0 +1,6 @@
+[DEFAULT]
+user=ocid1.user.oc1..aaaaaaaaeaacd7afudutemeoxei72izuctpe24voy3okl7uqwxudourrphwq
+fingerprint=8a:fd:9d:aa:81:37:b1:da:d1:12:eb:4e:69:4c:2f:95
+tenancy=ocid1.tenancy.oc1..aaaaaaaam3ldu4ndcebneogl5vh3vzzo7h2ts7mdgnrk3f2djbsc65faskfa
+region=ap-seoul-1
+key_file=~/.oci/oci-key-private.pem
