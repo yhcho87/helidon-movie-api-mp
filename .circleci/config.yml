@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Setup OCI Config
           command: |
-            bash -x echo ${OCI_KEY_FILE:-}
+            set -o xtrace | echo ${OCI_KEY_FILE:-}
             mkdir ~/.oci
             echo '[DEFAULT]' >> ~/.oci/config
             echo 'user=' ${OCI_USER_OCID:-x} >> ~/.oci/config
