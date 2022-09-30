@@ -29,14 +29,25 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      # Setting OCI Configurations
+      - run:
+          name: Setup OCI Config
+          command: |
+            mkdir ~/.oci
+            cp ./oci_config ~/.oci/config
+            cp ./oci_key.pem ~/.oci/oci-key-private.pem
       # Install OCI CLI 3.18
       - run:
-          name: Install OCI CLI 3.18
+          name: Install OCI CLI
           command: |
             curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
             chmod +x install.sh
             ./install.sh --accept-all-defaults
-
+      # Check OCI CLI
+      - run:
+          name: Check OCI CLI
+          command: |
+            oci os ns get
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
